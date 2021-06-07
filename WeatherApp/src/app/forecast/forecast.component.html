@@ -1,0 +1,24 @@
+<h4>Template for 5-day forecast page:</h4>
+<div class="container-fluid" >
+  <div class="panel panel-default" >
+    <div class="panel-heading">
+      <h3 class="panel-title">5-day forecast for  {{forecastData.city.name }} {{pincode}}</h3>
+
+    </div>
+    <ul class="list-group" *ngFor="let foreCastData of forecastData.list; let i = index">
+      <!---->
+      <li class="list-group-item">
+       {{(foreCastData.dt | dateConverter | date:'fullDate')}}:
+          {{foreCastData.weather[0].main}}
+          - Min:  {{foreCastData.temp.min}}
+          - Max:  {{foreCastData.temp.max}}
+         
+       <span class="iconSpac"> <img *ngIf="foreCastData.weather[0].main=='Clear'"  class ="wIcon" src="https://www.angulartraining.com/images/weather/sun.png">
+        <img *ngIf="foreCastData.weather[0].main=='Clouds'" class ="wIcon"src="https://www.angulartraining.com/images/weather/clouds.png">
+        <img *ngIf="foreCastData.weather[0].main=='Rain'" class ="wIcon" src="https://www.angulartraining.com/images/weather/rain.png">
+        <img *ngIf="foreCastData.weather[0].main=='Snow'" class ="wIcon"src="https://www.angulartraining.com/images/weather/snow.png"></span>
+      </li>
+    </ul>
+  </div>
+  <button class="btn btn-success" tabindex="0" id="mainPageBtn" (click)="goWeather()">&lt; Back to main page</button>
+</div>

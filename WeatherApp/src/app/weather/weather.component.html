@@ -1,0 +1,47 @@
+<h4>Template for main page:</h4>
+
+<div class="container-fluid">
+  <form name="weatherForm" [formGroup]="weatherForm" (ngSubmit)="weatherForm.valid && onSubmit()">
+  <div class="well">
+    <h2>Enter a zipcode:</h2>
+    <input class="form-control" formControlName="zipcode"  placeholder="Zipcode"  type="text" id="addLocation" >
+    <div *ngIf="(weatherForm.submitted || weatherForm.get('zipcode').touched || weatherForm.Invaild) && weatherForm.get('zipcode').errors ">
+      <div *ngIf="weatherForm.get('zipcode').errors.required || weatherForm.iunvaild " class="text-danger">zipcode is required</div>
+      <div *ngIf="weatherForm.get('zipcode').errors.pattern"  class="text-danger">zipcode is Invaild</div>
+    </div>
+    <br>
+    <button class="btn btn-primary" id="addLocationBtn" [disabled]="!weatherForm.valid">
+    Add location
+  </button>
+  </div>
+</form>
+
+<div *ngIf="isSpinner" class="spinner-border text-success" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+  <div *ngFor="let weatherData of weatherDataArray; let i = index">
+    <div class="well flex">
+      <div>
+        <h3>{{weatherData.data.name}}</h3>
+        <h4 *ngIf="weatherData">Current conditions: {{weatherData.data.weather[0].main}}</h4>
+        <h4>Temperatures today:</h4>
+        <p>
+          Current {{weatherData.data.main.temp}}
+          - Max {{weatherData.data.main.temp_min}}
+          - Min {{weatherData.data.main.temp_max}}
+        </p>
+        <p>
+          <a href="{{weatherData.forecastLink}}">Show 5-day forecast for {{weatherData.data.name}}</a>
+        </p>
+      </div>
+      <div>
+        <span class="close" (click)="deleteCity(i)">×</span>
+        <img *ngIf="weatherData.data.weather[0].main=='Clear'" src="https://www.angulartraining.com/images/weather/sun.png">
+        <img *ngIf="weatherData.data.weather[0].main=='Clouds'" src="https://www.angulartraining.com/images/weather/clouds.png">
+        <img *ngIf="weatherData.data.weather[0].main=='Rain'" src="https://www.angulartraining.com/images/weather/rain.png">
+        <img *ngIf="weatherData.data.weather[0].main=='Snow'" src="https://www.angulartraining.com/images/weather/snow.png">
+      </div>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

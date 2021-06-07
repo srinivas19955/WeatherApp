@@ -1,2 +1,2 @@
-# weatherApp
+# WeatherApp
 Weather application in Angualr

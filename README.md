@@ -19,7 +19,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
  
 ###   Weather Data View 
 
-small form is displayed with zipcode field and we need to provide the zipcode to access the Weather Data
+small form is displayed with zipcode field and we need to provide the zipcodeand click add location to access the Weather Data
 
 <p align='center'><img src="https://github.com/srinivas19955/WeatherApp/blob/main/images/WeatherApp.png?raw=true"></p>
 

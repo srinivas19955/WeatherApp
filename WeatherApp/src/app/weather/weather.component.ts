@@ -16,7 +16,7 @@ export class WeatherComponent implements OnInit {
     console.log(this.weatherDataArray);
   }
   isSpinner=false;
-  weatherData = { zipcode: '', data: '', forecastLink: '',icon:"" };
+  weatherData = { zipcode: "", data: "", forecastLink: "",icon:"" };
   weatherDataArray: any = [];
   weatherForm = new FormGroup({
     zipcode: new FormControl('',[
@@ -41,7 +41,7 @@ export class WeatherComponent implements OnInit {
         this.weatherData.forecastLink=this.weatherData.forecastLink =
             'forecast/' + this.weatherData.zipcode;
         console.log(this.weatherData.data);
-        if (this.weatherData.data != null && this.weatherData.data != '') {
+        if (this.weatherData.data != null && this.weatherData.data != "" ) {
           let index=this.findById(this.weatherData.zipcode)
           if(index!=-1){
             this.weatherDataArray[index].zipcode=this.weatherData.zipcode;
@@ -77,8 +77,13 @@ export class WeatherComponent implements OnInit {
     );
   }
   findById(zipcode: any) {
-    let index=this.weatherDataArray.findIndex(obj=> obj.zipcode==zipcode);
-    return index;
+    if(this.weatherDataArray){
+      let index=this.weatherDataArray.findIndex(obj=> obj.zipcode==zipcode);
+      return index;
+    }else{
+      alert("API is down please try After Some Time")
+    }
+   
   }
   clearWeatherData() {
     this.weatherData.data = '';
@@ -93,4 +98,3 @@ export class WeatherComponent implements OnInit {
     );
   }
 }
-

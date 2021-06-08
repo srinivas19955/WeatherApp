@@ -81,7 +81,7 @@ export class WeatherComponent implements OnInit {
       let index=this.weatherDataArray.findIndex(obj=> obj.zipcode==zipcode);
       return index;
     }else{
-      alert("API is down please try After Some Time")
+      return -1;
     }
    
   }

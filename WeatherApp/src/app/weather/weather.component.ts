@@ -13,6 +13,9 @@ export class WeatherComponent implements OnInit {
   ngOnInit() {
     console.log('******************************');
     this.weatherDataArray = JSON.parse(localStorage.getItem('weatherDataSource'));
+    if(this.weatherDataArray==null){
+      this.weatherDataArray=[];
+    }
     console.log(this.weatherDataArray);
   }
   isSpinner=false;
